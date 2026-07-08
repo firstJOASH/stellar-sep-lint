@@ -1,1 +1,9 @@
-{"transaction":{"id":"82fhs729f63dh0v4","status":"completed","amount_in":"18.34","amount_out":"18.24","stellar_account_id":"GBBHQ7H4V6RRORKYLHTCAWP6MOHNORRFJSDPXDFYDGJB2LPZUFPXUEW3"}}
+{
+  "transaction": {
+    "id": "82fhs729f63dh0v4",
+    "status": "completed",
+    "amount_in": "18.34",
+    "amount_out": "18.24",
+    "stellar_account_id": "GBBHQ7H4V6RRORKYLHTCAWP6MOHNORRFJSDPXDFYDGJB2LPZUFPXUEW3"
+  }
+}

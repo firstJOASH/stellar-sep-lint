@@ -7,7 +7,8 @@ import type { RuleContext } from '../src/types.js';
 
 const ctx = (file: string): RuleContext => ({ file, config: { rules: {} } });
 
-const load = (p: string): Record<string, unknown> => TOML.parse(readFileSync(resolve(p), 'utf8')) as Record<string, unknown>;
+const load = (p: string): Record<string, unknown> =>
+  TOML.parse(readFileSync(resolve(p), 'utf8')) as Record<string, unknown>;
 
 describe('SEP-1 passing fixture', () => {
   it('produces no violations for a valid stellar.toml', () => {
@@ -21,28 +22,28 @@ describe('SEP-1 failing fixture', () => {
   it('flags missing VERSION and NETWORK_PASSPHRASE', () => {
     const doc = load('tests/fixtures/sep1/failing/stellar.toml');
     const viols = validateSep1(doc, ctx('stellar.toml'));
-    const ids = viols.map(v => v.ruleId);
+    const ids = viols.map((v) => v.ruleId);
     expect(ids).toContain('sep1/missing-version');
     expect(ids).toContain('sep1/missing-network-passphrase');
   });
   it('flags invalid SIGNING_KEY', () => {
     const doc = load('tests/fixtures/sep1/failing/stellar.toml');
-    const ids = validateSep1(doc, ctx('stellar.toml')).map(v => v.ruleId);
+    const ids = validateSep1(doc, ctx('stellar.toml')).map((v) => v.ruleId);
     expect(ids).toContain('sep1/invalid-signing-key');
   });
   it('flags deprecated AUTH_SERVER', () => {
     const doc = load('tests/fixtures/sep1/failing/stellar.toml');
-    const ids = validateSep1(doc, ctx('stellar.toml')).map(v => v.ruleId);
+    const ids = validateSep1(doc, ctx('stellar.toml')).map((v) => v.ruleId);
     expect(ids).toContain('sep1/deprecated-auth-server');
   });
   it('flags http (non-https) server URL', () => {
     const doc = load('tests/fixtures/sep1/failing/stellar.toml');
-    const ids = validateSep1(doc, ctx('stellar.toml')).map(v => v.ruleId);
+    const ids = validateSep1(doc, ctx('stellar.toml')).map((v) => v.ruleId);
     expect(ids).toContain('sep1/https-required');
   });
   it('flags invalid currency code length, issuer, status, display_decimals', () => {
     const doc = load('tests/fixtures/sep1/failing/stellar.toml');
-    const ids = validateSep1(doc, ctx('stellar.toml')).map(v => v.ruleId);
+    const ids = validateSep1(doc, ctx('stellar.toml')).map((v) => v.ruleId);
     expect(ids).toContain('sep1/currency-code-too-long');
     expect(ids).toContain('sep1/currency-invalid-issuer');
     expect(ids).toContain('sep1/currency-invalid-status');
@@ -50,8 +51,11 @@ describe('SEP-1 failing fixture', () => {
   });
   it('respects rule being disabled in config', () => {
     const doc = load('tests/fixtures/sep1/failing/stellar.toml');
-    const disabledCtx: RuleContext = { file: 'stellar.toml', config: { rules: { 'sep1/missing-version': 'off' } } };
-    const ids = validateSep1(doc, disabledCtx).map(v => v.ruleId);
+    const disabledCtx: RuleContext = {
+      file: 'stellar.toml',
+      config: { rules: { 'sep1/missing-version': 'off' } },
+    };
+    const ids = validateSep1(doc, disabledCtx).map((v) => v.ruleId);
     expect(ids).not.toContain('sep1/missing-version');
   });
 });

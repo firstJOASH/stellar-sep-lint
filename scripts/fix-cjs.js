@@ -1,1 +1,3 @@
-import{writeFileSync}from"node:fs";writeFileSync("dist/cjs/package.json",JSON.stringify({type:"commonjs"}));console.log("done");
+import { writeFileSync } from 'node:fs';
+writeFileSync('dist/cjs/package.json', JSON.stringify({ type: 'commonjs' }));
+console.log('done');

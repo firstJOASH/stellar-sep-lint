@@ -79,14 +79,14 @@ Violations appear as **inline PR annotations** when using `--format github`.
 
 The linter auto-detects file type by name:
 
-| Filename pattern         | Validated as        |
-|--------------------------|---------------------|
-| `stellar.toml`           | SEP-1               |
-| `*sep24*info*.json`      | SEP-24 /info        |
+| Filename pattern            | Validated as              |
+| --------------------------- | ------------------------- |
+| `stellar.toml`              | SEP-1                     |
+| `*sep24*info*.json`         | SEP-24 /info              |
 | `*sep24*transactions*.json` | SEP-24 /transactions list |
 | `*sep24*transaction*.json`  | SEP-24 single transaction |
-| `*sep31*info*.json`      | SEP-31 /info        |
-| `*sep31*transaction*.json`  | SEP-31 transaction  |
+| `*sep31*info*.json`         | SEP-31 /info              |
+| `*sep31*transaction*.json`  | SEP-31 transaction        |
 
 ## Config File
 
@@ -108,56 +108,56 @@ Each rule accepts: `"error"` (default), `"warn"`, or `"off"`.
 
 ### SEP-1 Rules
 
-| Rule ID | Description | Spec Section |
-|---------|-------------|--------------|
-| `sep1/missing-version` | Missing VERSION field | §General Information |
-| `sep1/missing-network-passphrase` | Missing NETWORK_PASSPHRASE | §General Information |
-| `sep1/invalid-signing-key` | SIGNING_KEY is not a valid G... public key | §General Information |
-| `sep1/invalid-accounts` | ACCOUNTS contains invalid Stellar keys | §General Information |
-| `sep1/https-required` | Server URL fields must use https:// | §General Information |
-| `sep1/deprecated-auth-server` | AUTH_SERVER is deprecated | §General Information |
-| `sep1/direct-payment-requires-kyc` | DIRECT_PAYMENT_SERVER requires KYC_SERVER | SEP-31 §Prerequisites |
-| `sep1/currency-missing-code` | CURRENCIES entry missing required `code` field | §Currency Documentation |
-| `sep1/currency-code-too-long` | CURRENCIES code exceeds 12 characters | §Currency Documentation |
-| `sep1/currency-invalid-issuer` | CURRENCIES issuer is not a valid Stellar key | §Currency Documentation |
-| `sep1/currency-invalid-status` | CURRENCIES status is not a valid enum value | §Currency Documentation |
-| `sep1/currency-invalid-anchor-asset-type` | anchor_asset_type is not a valid enum value | §Currency Documentation |
-| `sep1/currency-invalid-display-decimals` | display_decimals must be integer 0-7 | §Currency Documentation |
+| Rule ID                                   | Description                                    | Spec Section            |
+| ----------------------------------------- | ---------------------------------------------- | ----------------------- |
+| `sep1/missing-version`                    | Missing VERSION field                          | §General Information    |
+| `sep1/missing-network-passphrase`         | Missing NETWORK_PASSPHRASE                     | §General Information    |
+| `sep1/invalid-signing-key`                | SIGNING_KEY is not a valid G... public key     | §General Information    |
+| `sep1/invalid-accounts`                   | ACCOUNTS contains invalid Stellar keys         | §General Information    |
+| `sep1/https-required`                     | Server URL fields must use https://            | §General Information    |
+| `sep1/deprecated-auth-server`             | AUTH_SERVER is deprecated                      | §General Information    |
+| `sep1/direct-payment-requires-kyc`        | DIRECT_PAYMENT_SERVER requires KYC_SERVER      | SEP-31 §Prerequisites   |
+| `sep1/currency-missing-code`              | CURRENCIES entry missing required `code` field | §Currency Documentation |
+| `sep1/currency-code-too-long`             | CURRENCIES code exceeds 12 characters          | §Currency Documentation |
+| `sep1/currency-invalid-issuer`            | CURRENCIES issuer is not a valid Stellar key   | §Currency Documentation |
+| `sep1/currency-invalid-status`            | CURRENCIES status is not a valid enum value    | §Currency Documentation |
+| `sep1/currency-invalid-anchor-asset-type` | anchor_asset_type is not a valid enum value    | §Currency Documentation |
+| `sep1/currency-invalid-display-decimals`  | display_decimals must be integer 0-7           | §Currency Documentation |
 
 ### SEP-24 Rules
 
-| Rule ID | Description | Spec Section |
-|---------|-------------|--------------|
-| `sep24/info-not-object` | /info response is not a JSON object | §Info |
-| `sep24/info-missing-deposit` | /info missing required `deposit` object | §Info |
-| `sep24/info-missing-withdraw` | /info missing required `withdraw` object | §Info |
-| `sep24/info-missing-enabled` | Asset entry missing `enabled` field | §Info |
-| `sep24/info-invalid-enabled` | Asset `enabled` field is not a boolean | §Info |
-| `sep24/invalid-status` | transaction.status is not a valid SEP-24 status | §Transaction History |
-| `sep24/transaction-missing-id` | transaction missing required `id` field | §Transaction History |
-| `sep24/transaction-missing-kind` | transaction missing required `kind` field | §Transaction History |
-| `sep24/transaction-invalid-kind` | transaction.kind must be deposit or withdrawal | §Transaction History |
-| `sep24/transaction-missing-status` | transaction missing required `status` field | §Transaction History |
-| `sep24/transaction-missing-started-at` | transaction missing required `started_at` field | §Transaction History |
+| Rule ID                                   | Description                                        | Spec Section         |
+| ----------------------------------------- | -------------------------------------------------- | -------------------- |
+| `sep24/info-not-object`                   | /info response is not a JSON object                | §Info                |
+| `sep24/info-missing-deposit`              | /info missing required `deposit` object            | §Info                |
+| `sep24/info-missing-withdraw`             | /info missing required `withdraw` object           | §Info                |
+| `sep24/info-missing-enabled`              | Asset entry missing `enabled` field                | §Info                |
+| `sep24/info-invalid-enabled`              | Asset `enabled` field is not a boolean             | §Info                |
+| `sep24/invalid-status`                    | transaction.status is not a valid SEP-24 status    | §Transaction History |
+| `sep24/transaction-missing-id`            | transaction missing required `id` field            | §Transaction History |
+| `sep24/transaction-missing-kind`          | transaction missing required `kind` field          | §Transaction History |
+| `sep24/transaction-invalid-kind`          | transaction.kind must be deposit or withdrawal     | §Transaction History |
+| `sep24/transaction-missing-status`        | transaction missing required `status` field        | §Transaction History |
+| `sep24/transaction-missing-started-at`    | transaction missing required `started_at` field    | §Transaction History |
 | `sep24/transaction-missing-more-info-url` | transaction missing required `more_info_url` field | §Transaction History |
 
 ### SEP-31 Rules
 
-| Rule ID | Description | Spec Section |
-|---------|-------------|--------------|
-| `sep31/info-not-object` | /info response is not a JSON object | §GET Info |
-| `sep31/info-missing-receive` | /info missing required `receive` object | §GET Info |
-| `sep31/info-invalid-receive` | /info `receive` is not an object | §GET Info |
-| `sep31/info-invalid-asset-entry` | Asset entry in receive is not an object | §Asset Object Schema |
-| `sep31/info-asset-invalid-min-amount` | min_amount must be a number | §Asset Object Schema |
-| `sep31/info-asset-invalid-max-amount` | max_amount must be a number | §Asset Object Schema |
-| `sep31/info-asset-invalid-fee-fixed` | fee_fixed must be a number | §Asset Object Schema |
-| `sep31/info-asset-invalid-fee-percent` | fee_percent must be a number | §Asset Object Schema |
-| `sep31/invalid-status` | transaction.status is not a valid SEP-31 status | §GET Transaction |
-| `sep31/transaction-missing-id` | transaction missing required `id` field | §GET Transaction |
-| `sep31/transaction-missing-status` | transaction missing required `status` field | §GET Transaction |
-| `sep31/transaction-missing-stellar-account` | pending_sender transaction missing stellar_account_id | §GET Transaction |
-| `sep31/transaction-pending-info-update-missing-updates` | pending_transaction_info_update missing required_info_updates | §GET Transaction |
+| Rule ID                                                 | Description                                                   | Spec Section         |
+| ------------------------------------------------------- | ------------------------------------------------------------- | -------------------- |
+| `sep31/info-not-object`                                 | /info response is not a JSON object                           | §GET Info            |
+| `sep31/info-missing-receive`                            | /info missing required `receive` object                       | §GET Info            |
+| `sep31/info-invalid-receive`                            | /info `receive` is not an object                              | §GET Info            |
+| `sep31/info-invalid-asset-entry`                        | Asset entry in receive is not an object                       | §Asset Object Schema |
+| `sep31/info-asset-invalid-min-amount`                   | min_amount must be a number                                   | §Asset Object Schema |
+| `sep31/info-asset-invalid-max-amount`                   | max_amount must be a number                                   | §Asset Object Schema |
+| `sep31/info-asset-invalid-fee-fixed`                    | fee_fixed must be a number                                    | §Asset Object Schema |
+| `sep31/info-asset-invalid-fee-percent`                  | fee_percent must be a number                                  | §Asset Object Schema |
+| `sep31/invalid-status`                                  | transaction.status is not a valid SEP-31 status               | §GET Transaction     |
+| `sep31/transaction-missing-id`                          | transaction missing required `id` field                       | §GET Transaction     |
+| `sep31/transaction-missing-status`                      | transaction missing required `status` field                   | §GET Transaction     |
+| `sep31/transaction-missing-stellar-account`             | pending_sender transaction missing stellar_account_id         | §GET Transaction     |
+| `sep31/transaction-pending-info-update-missing-updates` | pending_transaction_info_update missing required_info_updates | §GET Transaction     |
 
 ## License
 

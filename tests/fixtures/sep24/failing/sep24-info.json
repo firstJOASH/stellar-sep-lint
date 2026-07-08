@@ -1,1 +1,1 @@
-{"deposit":{"USD":{"fee_fixed":5}},"extra_field":"bad"}
+{ "deposit": { "USD": { "fee_fixed": 5 } }, "extra_field": "bad" }

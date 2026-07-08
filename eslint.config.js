@@ -1,26 +1,25 @@
-import js from "@eslint/js";
+import js from '@eslint/js';
 
 export default [
   {
-    ignores: ["dist/**", "node_modules/**", "scripts/**"],
+    ignores: ['dist/**', 'node_modules/**', 'scripts/**'],
   },
   {
-    files: ["src/**/*.ts", "tests/**/*.ts"],
+    files: ['src/**/*.ts', 'tests/**/*.ts'],
     languageOptions: {
-      parser: (await import("@typescript-eslint/parser")).default,
+      parser: (await import('@typescript-eslint/parser')).default,
       parserOptions: {
-        project: "./tsconfig.eslint.json",
+        project: './tsconfig.eslint.json',
       },
     },
     plugins: {
-      "@typescript-eslint": (await import("@typescript-eslint/eslint-plugin"))
-        .default,
+      '@typescript-eslint': (await import('@typescript-eslint/eslint-plugin')).default,
     },
     rules: {
-      "@typescript-eslint/no-explicit-any": "error",
-      "@typescript-eslint/no-unused-vars": ["error", { argsIgnorePattern: "^_" }],
-      "@typescript-eslint/explicit-function-return-type": "warn",
-      "no-console": ["warn", { allow: ["error"] }],
+      '@typescript-eslint/no-explicit-any': 'error',
+      '@typescript-eslint/no-unused-vars': ['error', { argsIgnorePattern: '^_' }],
+      '@typescript-eslint/explicit-function-return-type': 'warn',
+      'no-console': ['warn', { allow: ['error'] }],
     },
   },
 ];

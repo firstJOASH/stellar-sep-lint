@@ -7,7 +7,9 @@ const ROOT = resolve('.');
 function run(args: string, expectFail = false): { code: number; out: string } {
   try {
     const out = execSync(`npx tsx src/cli.ts ${args}`, {
-      cwd: ROOT, encoding: 'utf8', env: { ...process.env, NODE_NO_WARNINGS: '1' }
+      cwd: ROOT,
+      encoding: 'utf8',
+      env: { ...process.env, NODE_NO_WARNINGS: '1' },
     });
     return { code: 0, out };
   } catch (e: unknown) {

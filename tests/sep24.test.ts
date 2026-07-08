@@ -17,12 +17,12 @@ describe('SEP-24 /info passing', () => {
 describe('SEP-24 /info failing', () => {
   it('flags missing withdraw object', () => {
     const raw = loadJson('tests/fixtures/sep24/failing/sep24-info.json');
-    const ids = validateSep24Info(raw, ctx('sep24-info.json')).map(v => v.ruleId);
+    const ids = validateSep24Info(raw, ctx('sep24-info.json')).map((v) => v.ruleId);
     expect(ids).toContain('sep24/info-missing-withdraw');
   });
   it('flags missing enabled field', () => {
     const raw = loadJson('tests/fixtures/sep24/failing/sep24-info.json');
-    const ids = validateSep24Info(raw, ctx('sep24-info.json')).map(v => v.ruleId);
+    const ids = validateSep24Info(raw, ctx('sep24-info.json')).map((v) => v.ruleId);
     expect(ids).toContain('sep24/info-missing-enabled');
   });
 });
@@ -37,18 +37,21 @@ describe('SEP-24 transaction passing', () => {
 describe('SEP-24 transaction failing', () => {
   it('flags invalid status', () => {
     const raw = loadJson('tests/fixtures/sep24/failing/sep24-transaction.json');
-    const ids = validateSep24Transaction(raw, ctx('sep24-transaction.json')).map(v => v.ruleId);
+    const ids = validateSep24Transaction(raw, ctx('sep24-transaction.json')).map((v) => v.ruleId);
     expect(ids).toContain('sep24/invalid-status');
   });
   it('flags missing started_at', () => {
     const raw = loadJson('tests/fixtures/sep24/failing/sep24-transaction.json');
-    const ids = validateSep24Transaction(raw, ctx('sep24-transaction.json')).map(v => v.ruleId);
+    const ids = validateSep24Transaction(raw, ctx('sep24-transaction.json')).map((v) => v.ruleId);
     expect(ids).toContain('sep24/transaction-missing-started-at');
   });
   it('respects rule disabled in config', () => {
     const raw = loadJson('tests/fixtures/sep24/failing/sep24-transaction.json');
-    const disabledCtx: RuleContext = { file: 'f', config: { rules: { 'sep24/invalid-status': 'off' } } };
-    const ids = validateSep24Transaction(raw, disabledCtx).map(v => v.ruleId);
+    const disabledCtx: RuleContext = {
+      file: 'f',
+      config: { rules: { 'sep24/invalid-status': 'off' } },
+    };
+    const ids = validateSep24Transaction(raw, disabledCtx).map((v) => v.ruleId);
     expect(ids).not.toContain('sep24/invalid-status');
   });
 });

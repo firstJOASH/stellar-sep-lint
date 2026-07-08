@@ -1,1 +1,11 @@
-{"transaction":{"id":"82fhs729f63dh0v4","kind":"deposit","status":"pending_external","started_at":"2017-03-20T17:05:32Z","more_info_url":"https://example.com/tx/1","amount_in":"18.34","amount_out":"18.24"}}
+{
+  "transaction": {
+    "id": "82fhs729f63dh0v4",
+    "kind": "deposit",
+    "status": "pending_external",
+    "started_at": "2017-03-20T17:05:32Z",
+    "more_info_url": "https://example.com/tx/1",
+    "amount_in": "18.34",
+    "amount_out": "18.24"
+  }
+}
