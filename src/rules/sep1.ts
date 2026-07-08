@@ -6,7 +6,7 @@ type D=Record<string,unknown>;
 function v(id:string,ctx:RuleContext,msg:string):LintViolation|null{ if(!isRuleEnabled(id,ctx.config))return null; return{ruleId:id,severity:getRuleSeverity(id,ctx.config) as 'error'|'warn',message:msg,file:ctx.file}; }
 export function validateSep1(doc:D,ctx:RuleContext):LintViolation[]{
   const out:LintViolation[]=[];
-  const p=(x:LintViolation|null)=>{if(x)out.push(x);};
+  const p=(x:LintViolation|null):void=>{if(x)out.push(x);};
   if(!doc['VERSION']) p(v('sep1/missing-version',ctx,'Missing VERSION (SEP-1 §General Information)'));
   if(!doc['NETWORK_PASSPHRASE']) p(v('sep1/missing-network-passphrase',ctx,'Missing NETWORK_PASSPHRASE (SEP-1 §General Information)'));
   const sk=doc['SIGNING_KEY']; if(sk!==undefined&&(typeof sk!=='string'||!G.test(sk))) p(v('sep1/invalid-signing-key',ctx,'SIGNING_KEY must be a valid G... Stellar public key'));

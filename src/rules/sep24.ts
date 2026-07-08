@@ -5,7 +5,7 @@ type J=Record<string,unknown>;
 function v(id:string,ctx:RuleContext,msg:string):LintViolation|null{if(!isRuleEnabled(id,ctx.config))return null;return{ruleId:id,severity:getRuleSeverity(id,ctx.config) as 'error'|'warn',message:msg,file:ctx.file};}
 const S24=new Set(['incomplete','pending_user_transfer_start','pending_user_transfer_complete','pending_external','pending_anchor','on_hold','pending_stellar','pending_trust','pending_user','completed','refunded','expired','no_market','too_small','too_large','error']);
 export function validateSep24Info(raw:unknown,ctx:RuleContext):LintViolation[]{
-  const out:LintViolation[]=[]; const p=(x:LintViolation|null)=>{if(x)out.push(x);};
+  const out:LintViolation[]=[]; const p=(x:LintViolation|null):void=>{if(x)out.push(x);};
   if(typeof raw!=='object'||raw===null){p(v('sep24/info-not-object',ctx,'SEP-24 /info must be a JSON object'));return out;}
   const info=raw as J;
   if(!info['deposit'])p(v('sep24/info-missing-deposit',ctx,'SEP-24 /info missing required deposit object'));
@@ -14,7 +14,7 @@ export function validateSep24Info(raw:unknown,ctx:RuleContext):LintViolation[]{
   return out;
 }
 export function validateSep24Transaction(raw:unknown,ctx:RuleContext):LintViolation[]{
-  const out:LintViolation[]=[]; const p=(x:LintViolation|null)=>{if(x)out.push(x);};
+  const out:LintViolation[]=[]; const p=(x:LintViolation|null):void=>{if(x)out.push(x);};
   let tx=raw; if(typeof raw==='object'&&raw!==null&&'transaction' in (raw as J))tx=(raw as J)['transaction'];
   if(typeof tx!=='object'||tx===null){p(v('sep24/transaction-not-object',ctx,'SEP-24 transaction must be a JSON object'));return out;}
   const t=tx as J;
@@ -26,7 +26,7 @@ export function validateSep24Transaction(raw:unknown,ctx:RuleContext):LintViolat
   return out;
 }
 export function validateSep24Transactions(raw:unknown,ctx:RuleContext):LintViolation[]{
-  const out:LintViolation[]=[]; const p=(x:LintViolation|null)=>{if(x)out.push(x);};
+  const out:LintViolation[]=[]; const p=(x:LintViolation|null):void=>{if(x)out.push(x);};
   if(typeof raw!=='object'||raw===null||!Array.isArray((raw as J)['transactions'])){p(v('sep24/transactions-not-array',ctx,'SEP-24 /transactions must have a transactions array'));return out;}
   ((raw as J)['transactions'] as unknown[]).forEach((tx,i)=>out.push(...validateSep24Transaction(tx,{...ctx,file:ctx.file+'['+i+']'})));
   return out;

@@ -7,7 +7,7 @@ import type { RuleContext } from '../src/types.js';
 
 const ctx = (file: string): RuleContext => ({ file, config: { rules: {} } });
 
-const load = (p: string) => TOML.parse(readFileSync(resolve(p), 'utf8')) as Record<string, unknown>;
+const load = (p: string): Record<string, unknown> => TOML.parse(readFileSync(resolve(p), 'utf8')) as Record<string, unknown>;
 
 describe('SEP-1 passing fixture', () => {
   it('produces no violations for a valid stellar.toml', () => {

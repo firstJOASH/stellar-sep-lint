@@ -9,7 +9,7 @@ export default [
     languageOptions: {
       parser: (await import("@typescript-eslint/parser")).default,
       parserOptions: {
-        project: "./tsconfig.json",
+        project: "./tsconfig.eslint.json",
       },
     },
     plugins: {
