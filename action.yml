@@ -1,0 +1,34 @@
+name: 'stellar-sep-lint'
+description: 'Static analysis linter for Stellar SEP-1, SEP-24, and SEP-31 anchor compliance'
+author: 'stellar-sep-lint'
+inputs:
+  directory:
+    description: 'Directory containing stellar.toml and/or JSON fixture files to lint'
+    required: true
+    default: '.'
+  format:
+    description: 'Output format: terminal, github, json'
+    required: false
+    default: 'github'
+  config:
+    description: 'Path to .seplintrc.json config file'
+    required: false
+    default: ''
+runs:
+  using: 'composite'
+  steps:
+    - name: Setup Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: '20'
+    - name: Install stellar-sep-lint
+      shell: bash
+      run: npm install -g stellar-sep-lint
+    - name: Run stellar-sep-lint
+      shell: bash
+      run: |
+        ARGS="${{ inputs.directory }} --format ${{ inputs.format }}"
+        if [ -n "${{ inputs.config }}" ]; then
+          ARGS="$ARGS --config ${{ inputs.config }}"
+        fi
+        stellar-sep-lint check $ARGS

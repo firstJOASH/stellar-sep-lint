@@ -1,0 +1,9 @@
+SIGNING_KEY="INVALID_KEY"
+AUTH_SERVER="http://deprecated.example.com"
+TRANSFER_SERVER_SEP0024="http://not-https.example.com"
+ACCOUNTS=["not-a-key"]
+[[CURRENCIES]]
+code="TOOLONGCURRENCYCODE"
+issuer="bad-issuer"
+status="invalid_status"
+display_decimals=9

@@ -1,0 +1,1 @@
+{"deposit":{"USD":{"enabled":true,"fee_fixed":5,"fee_percent":1,"min_amount":0.1,"max_amount":1000}},"withdraw":{"USD":{"enabled":true,"fee_minimum":5,"fee_percent":0.5}}}

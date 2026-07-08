@@ -1,0 +1,1 @@
+{"transaction":{"id":"abc123","kind":"deposit","status":"not_a_valid_status","amount_in":"10"}}
